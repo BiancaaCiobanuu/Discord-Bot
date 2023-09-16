@@ -1,0 +1,20 @@
+# Node.js dependencies
+node_modules
+
+# Environment variables
+.env
+
+# Compiled output
+dist
+build
+
+# IDEEditor specific files
+.vscode
+.idea
+.code-workspace
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
