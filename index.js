@@ -4,14 +4,14 @@ const { token, guildId } = require('./config.json');
 const mongoose = require('mongoose');
 const { Client, Intents, Collection, Permissions, MessageButton, MessageActionRow } = require('discord.js');
 
-mongoose.connect('mongodb+srv://biancaciobanuuuu:RxxQdHjfa73MGVrx@cluster0.gpwtddu.mongodb.net/Sapphire?retryWrites=true&w=majority', {
+mongoose.connect('Your-MONGO-DATABASE-Connection-string', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
 
-const prefix = '?'
+const prefix = 'Your-prefix'
 
 const client = new Client({
   intents: [
@@ -46,14 +46,14 @@ client.once('ready', () => {
 });
 
 function logAction(actionDescription) {
-  const guild = client.guilds.cache.get('1148329009323708530');
+  const guild = client.guilds.cache.get('SERVER-ID');
 
   if (!guild) {
     console.error('Guild not found.');
     return;
   }
 
-  const logsChannel = guild.channels.cache.get('1152526143438725170');
+  const logsChannel = guild.channels.cache.get('LOGS-CHANNEL-ID');
   if (!logsChannel) {
     console.error('Logs channel not found.');
     return;
@@ -252,7 +252,7 @@ client.on('interactionCreate', async (interaction) => {
     const selectedReason = interaction.values[0];
 
     const ticketCategory = interaction.guild.channels.cache.find((channel) =>
-      channel.type === 'GUILD_CATEGORY' && channel.name === '『🎫』TICKETS ZONE『🎫』'
+      channel.type === 'GUILD_CATEGORY' && channel.name === '『🎫』TICKETS ZONE『🎫』' // CHANGE 『🎫』TICKETS ZONE『🎫』WITH YOUR TICKET CATEGORY
     );
 
     if (!ticketCategory) {
@@ -261,7 +261,7 @@ client.on('interactionCreate', async (interaction) => {
     }
 
     const botMember = interaction.guild.members.cache.get(client.user.id);
-    const botRole = interaction.guild.roles.cache.find(role => role.name === "⁎⁺˳✧༚ Community Bots");
+    const botRole = interaction.guild.roles.cache.find(role => role.name === "Your-bot-role-name");
     
     const ticketChannel = await interaction.guild.channels.create(`ticket-${interaction.user.tag}`, {
       type: 'GUILD_TEXT',
